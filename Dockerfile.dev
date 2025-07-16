@@ -1,0 +1,19 @@
+FROM ruby:3.2
+
+# Node, Yarn, PostgreSQLクライアントなど開発で必要なもの
+RUN apt-get update -qq && apt-get install -y \
+  nodejs \
+  yarn \
+  postgresql-client
+
+WORKDIR /app
+
+# Gemfileを先にコピーしてbundle install
+COPY Gemfile Gemfile.lock ./
+RUN gem install bundler && bundle install
+
+# ホスト側コードをボリュームマウントする想定なのでCOPY . . は不要
+
+EXPOSE 3000
+
+# 起動コマンドはdocker-compose.yml側で指定する
