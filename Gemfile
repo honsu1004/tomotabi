@@ -58,3 +58,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem 'devise'
+gem 'active_storage_validations'
+gem 'paper_trail'
+gem 'geocoder'
