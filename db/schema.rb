@@ -51,6 +51,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_17_104830) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["plan_id"], name: "index_memory_folders_on_plan_id"
+    t.index ["updated_user_id"], name: "index_memory_folders_on_updated_user_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -61,6 +62,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_17_104830) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["plan_id"], name: "index_notes_on_plan_id"
+    t.index ["updated_user_id"], name: "index_notes_on_updated_user_id"
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
@@ -95,6 +97,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_17_104830) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["plan_id"], name: "index_schedule_items_on_plan_id"
+    t.index ["updated_user_id"], name: "index_schedule_items_on_updated_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -112,10 +115,13 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_17_104830) do
   add_foreign_key "memories", "users"
   add_foreign_key "memories", "users", column: "updated_user_id"
   add_foreign_key "memory_folders", "plans"
+  add_foreign_key "memory_folders", "users", column: "updated_user_id"
   add_foreign_key "notes", "plans"
   add_foreign_key "notes", "users"
+  add_foreign_key "notes", "users", column: "updated_user_id"
   add_foreign_key "plan_members", "plans"
   add_foreign_key "plan_members", "users"
   add_foreign_key "plans", "users"
   add_foreign_key "schedule_items", "plans"
+  add_foreign_key "schedule_items", "users", column: "updated_user_id"
 end
