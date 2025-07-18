@@ -1,10 +1,11 @@
 FROM ruby:3.2
 
-# Node, Yarn, PostgreSQLクライアントなど開発で必要なもの
+# Node, Yarn, PostgreSQLクライアント、Heroku CLIなど開発で必要なもの
 RUN apt-get update -qq && apt-get install -y \
   nodejs \
   yarn \
-  postgresql-client
+  postgresql-client && \
+  curl https://cli-assets.heroku.com/install.sh | sh
 
 WORKDIR /app
 
