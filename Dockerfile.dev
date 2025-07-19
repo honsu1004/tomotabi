@@ -13,6 +13,8 @@ WORKDIR /app
 COPY Gemfile Gemfile.lock ./
 RUN gem install bundler && bundle install
 
+RUN apt-get update && apt-get install -y watchman
+
 # ホスト側コードをボリュームマウントする想定なのでCOPY . . は不要
 
 EXPOSE 3000

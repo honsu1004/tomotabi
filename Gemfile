@@ -63,3 +63,4 @@ gem 'devise'
 gem 'active_storage_validations'
 gem 'paper_trail'
 gem 'geocoder'
+gem "tailwindcss-rails"
